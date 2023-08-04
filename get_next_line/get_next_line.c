@@ -6,17 +6,16 @@
 /*   By: toantune <toantune@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 19:29:08 by toantune          #+#    #+#             */
-/*   Updated: 2023/08/04 15:47:21 by toantune         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:00:36 by toantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./get_next_line.h"
 
-
 static char	*go_get_line(int lbrk, char *buff, int fd)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*line;
 
 	line = NULL;
@@ -39,19 +38,18 @@ static char	*go_get_line(int lbrk, char *buff, int fd)
 		}
 	}
 	return (line);
-	
 }
 
 char	*get_next_line(int fd)
 {
 	static char	buff[BUFFER_SIZE + 1];
 	char		*line;
-	int		lbrk;	
-	int		i;
-	
+	int			lbrk;	
+	int			i;
+
 	lbrk = 0;
 	line = NULL;
-	if ((read(fd, 0, 0) < 0) && BUFFER_SIZE <= 0)
+	if ((read(fd, 0, 0) < 0) || BUFFER_SIZE < 1)
 	{
 		i = 0;
 		while (buff[i])
@@ -59,7 +57,6 @@ char	*get_next_line(int fd)
 			buff[i] = 0;
 			i++;
 		}
-		/* ft_memset(buff, 0); */
 		return (NULL);
 	}
 	line = go_get_line(lbrk, buff, fd);
