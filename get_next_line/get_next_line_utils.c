@@ -6,60 +6,59 @@
 /*   By: toantune <toantune@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 19:29:49 by toantune          #+#    #+#             */
-/*   Updated: 2023/07/31 18:39:18 by toantune         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:58:34 by toantune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./get_next_line.h"
 
-int	ft_strlen(char *str)
+/* int	ft_strlen(char *str) */
+/* { */
+/* 	int	i; */
+
+/* 	if (!str) */
+/* 		return (0); */
+/* 	i = 0; */
+/* 	while (str[i]) */
+/* 		i++; */
+/* 	return (i); */
+/* } */
+
+int	check_line_break(const char *buff)
 {
 	int	i;
 
-	if (!str)
+	if (!buff)
 		return (0);
 	i = 0;
-	while (str[i])
+	while (buff[i] && buff[i] != '\n')
+		i++;
+	if (buff[i] == '\n')
 		i++;
 	return (i);
 }
-
-int	check_line_break(char *buff)
-{
-	int	i;
-
-	if (buff == NULL)
-		return (0);
-	i = 0;
-	while (buff[i])
-	{
-		if (buff[i] == '\n')
-			return (i + 1);
-		i++;
-}
-	return (0);
-}
-char	*ft_strjoin(char *buff, int index, char *line)
+char	*ft_strjoin(char *buff, char *line)
 {
 	char	*new_line;
+	int	buff_sz;
+	int	line_sz;
 	int	i;
 	int	j;
 
 	new_line = NULL;
-	if (buff == NULL || index <= 0)
+	if (!buff)
 		return (NULL);
-	new_line = (char *)malloc(sizeof(char) * (index + ft_strlen(line) + 1));
+	buff_sz = check_line_break(buff);
+        line_sz = check_line_break(line);	
+	new_line = (char *)malloc(sizeof(char) * (buff_sz + line_sz + 1));
 	if (!new_line)
 		return (NULL);
-	i = 0;
-	while (i < ft_strlen(line))
-	{
+	i = -1;
+	while (++i < line_sz)
 		new_line[i] = line[i];
-		i++;
-	}
-	j = 0;
-	while (j < index)
-		new_line[i++] = buff[j++];
+	j = -1;
+	while (++j < buff_sz)
+		new_line[i++] = buff[j];
 	new_line[i] = '\0';
 	free(line);
 	return (new_line);
@@ -80,7 +79,6 @@ void	clean_buffer(char *buff, int index)
 		buff[i++] = 0;
 	if (buff[0] == 0)
 	{
-		free(buff);
 		buff = NULL;
 		return;
 	}
@@ -95,3 +93,11 @@ void	read_file(char *buff, int *buff_rd, int fd)
 		buff[*buff_rd] = '\0';
 }
 
+void	ft_memset(char *s, int c)
+{
+	while (*s)
+	{
+		*s = c;
+		s++;
+	}
+}

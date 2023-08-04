@@ -15,8 +15,11 @@ void	clean_buffer(char *buff, int index)
 int	main(void)
 {
 	char	buff[2] = "\0\0";
-	if (!(buff))
-		printf("not buff\n");
-	printf("buff\n");
+
+	if (buff[0] == '\0')
+		buff[0] = NULL;
+	
+	/* clean_buffer(buff, 5); */
+	printf("%s\n", buff);
 	return (0);
 }

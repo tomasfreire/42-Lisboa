@@ -3,10 +3,6 @@
 
 int     main(void)
 {
-    //test_ft_strlen(ft_strlen);
-    //test_check_line_break(check_line_break);
-    /* test_clean_buffer(clean_buffer); */
-    //test_strjoin(ft_strjoin);
     int fd = open("./text.txt", O_RDONLY);
     
     if (fd < 0)
@@ -16,7 +12,7 @@ int     main(void)
     {   
         char *line = get_next_line(fd);
 
-        printf("out %2d : %s\n", i, line);
+        printf("%2d : %s\n", i, line);
         free(line);
     }
 
