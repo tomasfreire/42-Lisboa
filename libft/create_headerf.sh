@@ -1,8 +1,10 @@
 #!/bin/bash
 
-rm libft.h
-
 FILE_NAME="libft.h"
+
+if test -f "$FILE_NAME"; then
+	rm $FILE_NAME
+fi
 
 echo "#ifndef LIBFT_H" >> $FILE_NAME
 echo "# define LIBFT_H" >> $FILE_NAME
