@@ -1,5 +1,7 @@
 # 42-Lisboa
 
+[![toantune's 42 stats](https://badge42.vercel.app/api/v2/cllf3szdf003508l64pz6d926/stats?cursusId=21&coalitionId=290)](https://github.com/JaeSeoKim/badge42)
+
 * [piscine](https://github.com/codenamesiriil/42-Lisboa/blob/main/_piscine/README.md)
 * [libft](https://github.com/codenamesiriil/42-Lisboa/blob/main/libft/README.md)
 * [ft_printf](https://github.com/codenamesiriil/42-Lisboa/blob/main/ft_printf/README.md)
